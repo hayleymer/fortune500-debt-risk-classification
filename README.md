@@ -143,6 +143,7 @@ This project uses:
 Install dependencies (example):
 ```bash
 pip install numpy pandas matplotlib scikit-learn scipy
+---
 
 ### 2) Data
 
@@ -150,7 +151,7 @@ Place the required CSVs where your code expects them:
 
 - `fundamentals.csv`
 - `securities.csv`
-
+---
 ### 3) Execute
 
 Run the notebook/script to reproduce:
@@ -160,7 +161,7 @@ Run the notebook/script to reproduce:
 - One-hot encoding
 - Model training + evaluation
 - Feature importance + ANOVA
-
+---
 ## Project Notes / Next Improvements
 
 If you extend this work, good next steps include:
@@ -169,7 +170,7 @@ If you extend this work, good next steps include:
 - Try a time-based split (train on earlier years, test on later years) to better reflect real deployment
 - Add richer features (cashflow-based metrics, coverage ratios) with careful leakage checks
 - Calibrate class probabilities and explore cost-sensitive errors (e.g., misclassifying “Very High” as “Very Low” is worse than adjacent mistakes)
-
+---
 ## Acknowledgements
 
 Dataset sources and sector labels are derived from the provided `fundamentals.csv` and `securities.csv` inputs used in the analysis.
