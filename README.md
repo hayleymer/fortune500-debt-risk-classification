@@ -82,8 +82,12 @@ This finding supports the hypothesis that leverage risk can be inferred from str
 ## Tech Stack
 
 Python
+
 pandas
+
 numpy
+
 scikit-learn
+
 matplotlib
-**
+
