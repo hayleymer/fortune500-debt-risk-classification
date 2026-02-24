@@ -16,10 +16,13 @@ This project explores whether underlying financial performance indicators can be
 This approach simulates real-world conditions where analysts must infer risk from incomplete financial information.
 
 ## Key modelling decisions:
-• Excluded Total Assets and Liabilities from predictors to avoid leakage
-• Engineered debt ratio only for target creation
-• Compared multiple classifiers
-• Used cross-validation for robust evaluation
+Excluded Total Assets and Liabilities from predictors to avoid leakage
+
+Engineered debt ratio only for target creation
+
+Compared multiple classifiers
+
+Used cross-validation for robust evaluation
 
 ## Dataset
 Source: Fortune 500 financial fundamentals dataset
