@@ -12,7 +12,7 @@ Key finding: financing burden (Interest Expense) emerged as a stronger structura
 
 ## Dataset
 
-The dataset consists of financial fundamentals for Fortune 500 companies over a five-year period (2012–2016), comprising:
+### The dataset consists of financial fundamentals for Fortune 500 companies over a five-year period (2012–2016), comprising:
 
 1,776 company-year observations
 
@@ -20,7 +20,7 @@ The dataset consists of financial fundamentals for Fortune 500 companies over a 
 
 Financial performance, scale, and sector classification features
 
-Key predictor variables used:
+### Key predictor variables used:
 
 Total Revenue
 
@@ -34,26 +34,23 @@ Year
 
 GICS Sector (one-hot encoded)
 
-Target variable:
+### Target variable:
 
 Debt Ratio = Total Liabilities / Total Assets
 
-Companies were classified into four balanced risk categories based on quartiles:
+### Companies were classified into four balanced risk categories based on quartiles:
 
-Very Low
-
-Low
-
-High
-
-Very High
+* Very Low
+* Low
+* High
+* Very High
 
 Each class contains 444 observations.
 
 Direct leverage variables were excluded from predictors to prevent data leakage.
 
 ## Approach
-Data Preparation
+### Data Preparation
 
 Merged fundamentals and securities datasets using ticker symbol
 
@@ -65,7 +62,7 @@ Converted categorical sector data using one-hot encoding
 
 Removed variables with substantial missing data
 
-Exploratory Data Analysis
+### Exploratory Data Analysis
 
 Examined Debt Ratio distribution and outliers
 
@@ -75,9 +72,9 @@ Evaluated relationships between financial indicators and leverage risk
 
 Sector analysis showed structurally higher leverage in Financials, Utilities, and Telecommunications sectors.
 
-Model Development
+### Model Development
 
-Three supervised classification models were trained and compared:
+#### Three supervised classification models were trained and compared:
 
 Random Forest Classifier
 
@@ -85,7 +82,7 @@ Gradient Boosting Classifier
 
 K-Nearest Neighbours Classifier
 
-Pipeline included:
+### Pipeline included:
 
 Train/test split (70/30) with stratified sampling
 
@@ -93,9 +90,9 @@ Feature scaling applied for KNN
 
 Cross-validated hyperparameter tuning using GridSearchCV
 
-Model Evaluation
+### Model Evaluation
 
-Models were evaluated using:
+#### Models were evaluated using:
 
 Accuracy
 
@@ -107,7 +104,7 @@ These metrics ensure balanced performance evaluation across all risk classes.
 
 ## Results
 
-Model performance on test data:
+### Model performance on test data:
 
 Model	Accuracy	Macro Recall	Macro F1
 Random Forest	66.2%	66.2%	66.2%
@@ -120,7 +117,7 @@ Hyperparameter tuning confirmed the baseline Random Forest configuration was nea
 
 ## Key Findings
 
-Interest Expense was the strongest predictor of debt risk classification, followed by:
+### Interest Expense was the strongest predictor of debt risk classification, followed by:
 
 Total Revenue
 
@@ -145,7 +142,7 @@ scikit-learn
 matplotlib
 scipy
 
-Machine learning techniques:
+## Machine learning techniques:
 
 Supervised classification
 
@@ -161,15 +158,15 @@ Statistical hypothesis testing (ANOVA)
 
 ## How to Run
 
-Clone repository:
+### Clone repository:
 
 git clone https://github.com/hayleymer/fortune500-debt-risk-classification.git
 
-Navigate to project folder:
+### Navigate to project folder:
 
 cd fortune500-debt-risk-classification
 
-Install dependencies:
+### Install dependencies:
 
 pip install -r requirements.txt
 
