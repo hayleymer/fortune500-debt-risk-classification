@@ -1,102 +1,176 @@
 # Fortune 500 Debt Risk Classification
-## Overview
-This project develops a supervised machine learning model to classify Fortune 500 companies into debt-risk bands using financial fundamentals.
-
-The objective was to determine whether leverage risk can be predicted from indirect financial indicators, while intentionally excluding direct leverage components from model features to avoid leakage.
-
-This project demonstrates an end-to-end data science workflow including data preparation, feature engineering, model training, evaluation, and interpretation.
-
 ## Business Problem
-Debt risk is a critical factor in investment screening, credit analysis, and corporate risk assessment.
 
-However, direct leverage measures (such as total liabilities and total assets) may not always be available, reliable, or appropriate for predictive modelling.
+Corporate leverage risk is a critical factor in financial risk assessment, credit analysis, and investment screening. However, direct leverage measures such as Total Liabilities and Total Assets can introduce target leakage when used as model predictors.
 
-This project explores whether underlying financial performance indicators can be used to classify companies into leverage risk categories.
+This project develops a supervised machine learning model to classify Fortune 500 companies into debt-risk bands using indirect financial indicators, excluding direct leverage components from the predictors.
 
-This approach simulates real-world conditions where analysts must infer risk from incomplete financial information.
+The objective is to evaluate whether structural financial characteristics such as financing burden, profitability, and operational scale can reliably predict leverage risk.
 
-## Key modelling decisions:
-Excluded Total Assets and Liabilities from predictors to avoid leakage
-
-Engineered debt ratio only for target creation
-
-Compared multiple classifiers
-
-Used cross-validation for robust evaluation
+Initial hypothesis: lower profitability would associate with higher leverage risk.
+Key finding: financing burden (Interest Expense) emerged as a stronger structural predictor.
 
 ## Dataset
-Source: Fortune 500 financial fundamentals dataset
 
-Each observation represents a company, including features such as:
-Revenue
-Profit margin
-Operating income
-Interest expense
-Market value
-Sector
-Other financial performance indicators
-Target variable (engineered):
+The dataset consists of financial fundamentals for Fortune 500 companies over a five-year period (2012–2016), comprising:
+
+1,776 company-year observations
+
+83 financial variables
+
+Financial performance, scale, and sector classification features
+
+Key predictor variables used:
+
+Total Revenue
+
+Interest Expense
+
+Depreciation
+
+Profit Margin
+
+Year
+
+GICS Sector (one-hot encoded)
+
+Target variable:
+
 Debt Ratio = Total Liabilities / Total Assets
 
-This ratio was used to assign companies into four risk bands:
-Low risk
-Moderate risk
-High risk
-Very high risk
+Companies were classified into four balanced risk categories based on quartiles:
 
-To prevent data leakage, Total Assets and Total Liabilities were excluded from the model predictors.
+Very Low
+
+Low
+
+High
+
+Very High
+
+Each class contains 444 observations.
+
+Direct leverage variables were excluded from predictors to prevent data leakage.
 
 ## Approach
-## 1. Data Preparation
+Data Preparation
 
-Loaded and cleaned financial dataset
-Handled missing values
-Created engineered target variable (Debt Ratio risk bands)
-Removed leakage variables from predictors
+Merged fundamentals and securities datasets using ticker symbol
 
-## 2. Feature Selection
+Filtered data to consistent five-year analysis window
 
-Financial performance indicators were used as predictors, including:
-Interest expense
-Profitability metrics
-Revenue and income measures
-Market and operational indicators
+Engineered Debt Ratio target variable
 
-## 3. Model Training
+Converted categorical sector data using one-hot encoding
 
-Multiple classification algorithms were evaluated:
-Random Forest
-Gradient Boosting
-K-Nearest Neighbours
-Data was split into training and test sets for unbiased evaluation.
+Removed variables with substantial missing data
 
-## 4. Model Evaluation
+Exploratory Data Analysis
+
+Examined Debt Ratio distribution and outliers
+
+Analysed leverage variation across sectors
+
+Evaluated relationships between financial indicators and leverage risk
+
+Sector analysis showed structurally higher leverage in Financials, Utilities, and Telecommunications sectors.
+
+Model Development
+
+Three supervised classification models were trained and compared:
+
+Random Forest Classifier
+
+Gradient Boosting Classifier
+
+K-Nearest Neighbours Classifier
+
+Pipeline included:
+
+Train/test split (70/30) with stratified sampling
+
+Feature scaling applied for KNN
+
+Cross-validated hyperparameter tuning using GridSearchCV
+
+Model Evaluation
 
 Models were evaluated using:
+
 Accuracy
-Macro F1 score
-Recall
-Cross-validation was used to improve robustness.
 
-## 5. Model Interpretation
+Macro Recall
 
-Feature importance analysis was conducted to understand which financial indicators most strongly influence debt risk classification.
+Macro F1 Score
+
+These metrics ensure balanced performance evaluation across all risk classes.
+
+## Results
+
+Model performance on test data:
+
+Model	Accuracy	Macro Recall	Macro F1
+Random Forest	66.2%	66.2%	66.2%
+Gradient Boosting	59.1%	59.1%	59.1%
+K-Nearest Neighbours	41.5%	41.5%	41.9%
+
+Random Forest demonstrated the strongest performance and most reliable classification across all risk bands.
+
+Hyperparameter tuning confirmed the baseline Random Forest configuration was near optimal.
 
 ## Key Findings
 
-Interest expense emerged as one of the strongest predictors of leverage risk, suggesting that financing burden provides an indirect signal of company debt exposure.
+Interest Expense was the strongest predictor of debt risk classification, followed by:
 
-This finding supports the hypothesis that leverage risk can be inferred from structural financial indicators, even when direct leverage measures are excluded.
+Total Revenue
+
+Depreciation
+
+Profit Margin
+
+Sector membership also contributed meaningful predictive signal.
+
+Feature importance analysis showed that financing burden and firm scale were the most influential structural indicators.
+
+Statistical validation using one-way ANOVA confirmed that Interest Expense differs significantly across debt risk categories (p < 0.001), supporting its predictive relevance.
+
+This demonstrates that leverage risk can be inferred from indirect financial indicators without directly using leverage variables.
 
 ## Tech Stack
 
 Python
-
 pandas
-
 numpy
-
 scikit-learn
-
 matplotlib
+scipy
 
+Machine learning techniques:
+
+Supervised classification
+
+Feature engineering
+
+One-hot encoding
+
+Hyperparameter tuning (GridSearchCV)
+
+Feature importance analysis
+
+Statistical hypothesis testing (ANOVA)
+
+## How to Run
+
+Clone repository:
+
+git clone https://github.com/hayleymer/fortune500-debt-risk-classification.git
+
+Navigate to project folder:
+
+cd fortune500-debt-risk-classification
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run the notebook or training script to reproduce analysis.
