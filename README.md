@@ -136,10 +136,15 @@ This demonstrates that leverage risk can be inferred from indirect financial ind
 ## Tech Stack
 
 Python
+
 pandas
+
 numpy
+
 scikit-learn
+
 matplotlib
+
 scipy
 
 ## Machine learning techniques:
