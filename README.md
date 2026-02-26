@@ -61,7 +61,9 @@ Direct leverage variables were excluded from predictors to prevent data leakage.
 
 - Examined Debt Ratio distribution and outliers  
 - Analysed leverage variation across sectors  
-- Evaluated relationships between financial indicators and leverage risk  
+- Evaluated relationships between financial indicators and leverage risk
+
+<img width="592" height="498" alt="screenshot_1" src="https://github.com/user-attachments/assets/5241f5b5-ff0f-49e9-b9a2-f6f4572131c2" />
 
 Sector analysis showed structurally higher leverage in Financials, Utilities, and Telecommunications sectors.
 
@@ -110,6 +112,8 @@ Hyperparameter tuning confirmed the baseline Random Forest configuration was nea
 ## Key Findings
 
 Interest Expense was the strongest predictor of debt risk classification, followed by:
+
+<img width="680" height="614" alt="screenshot" src="https://github.com/user-attachments/assets/4dd81a21-6079-4852-a09e-1cb705cfe255" />
 
 - Total Revenue  
 - Depreciation  
